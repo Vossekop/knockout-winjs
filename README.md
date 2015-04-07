@@ -9,14 +9,21 @@ Project to smooth the KnockoutJS/WinJS interaction, this code is a shim layer wh
 How to use this in your Knockout project?
 ----------------------------------------
 
-Just make sure to include WinJS 2.0, and then include the shim.
+Just make sure to include WinJS 3.0.1 NuGet package in your Visual Studio project, and then include the shim.
 
-    <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
-    <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
-    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
-    <script src="/js/knockout-winjs.js"></script>
+    <link href="WinJS/css/ui-light.css" rel="stylesheet" />
+    <script src="WinJS/js/WinJS.js"></script>
+    <script src="/scripts/knockout-winjs.js"></script>
 
-__Note: this shim library has only been tested against Knockout 3.0+.__
+Also make sure that you run the following WinJS command in your code
+
+	WinJS.Application.start();
+	
+And make sure that both Knockout's ko.applyBindings and WinJS.UI.processAll are run in the WinJS.Application.onready event or later.
+	
+__Note #1: this shim library has only been tested against Knockout 3.3.0 and WinJS 3.0.1__
+
+__Note #2: this shim library is adapted from its original version to improve some of the controls. I have not yet been able to test all controls that are explained below. However, I see no reason why they should not at least work as good as they did in spankyj's original.
 
 Examples of control usage
 -------------------------
@@ -88,6 +95,8 @@ Examples of control usage
         </div>
       </div>
     </script>
+	
+__Note: Data binding of the layout property is currently not supported. I'm open to suggestions on how to make that work correctly.__
 
 ### Menu and MenuCommand
 
