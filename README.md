@@ -23,7 +23,7 @@ And make sure that both Knockout's ko.applyBindings and WinJS.UI.processAll are 
 	
 __Note #1: this shim library has only been tested against Knockout 3.3.0 and WinJS 3.0.1__
 
-__Note #2: this shim library is adapted from its original version to improve some of the controls. I have not yet been able to test all controls that are explained below. However, I see no reason why they should not at least work as good as they did in spankyj's original.
+__Note #2: this shim library is adapted from its original version to improve some of the controls. I have not yet been able to test all controls that are explained below. However, I see no reason why they should not at least work as good as they did in spankyj's original.__
 
 Examples of control usage
 -------------------------
