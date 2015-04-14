@@ -139,18 +139,23 @@
         if (!oldValue) {
             var bindingList = new WinJS.Binding.List(unpacked);
             value.subscribe(function (newValue) {
+                var indexOffset = 0;
                 for (var i = 0, len = newValue.length; i < len; i++) {
                     var item = newValue[i];
                     switch (item.status) {
                         case "deleted":
-                            bindingList.splice(item.index, 1);
+                            bindingList.splice(item.index + indexOffset, 1);
+                            indexOffset--;
                             break;
                         case "added":
                             if (item.index === len) {
+                                indexOffset++;
                                 bindingList.push(item.value);
                             } else if (item.index === 0) {
+                                indexOffset++;
                                 bindingList.unshift(item.value);
                             } else {
+                                indexOffset++;
                                 bindingList.push(item.value)
                                 bindingList.move(value().length - 1, item.index);
                             }
