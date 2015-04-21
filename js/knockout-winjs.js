@@ -1,4 +1,5 @@
-﻿/*!
+/// <reference path="typings/winjs/winjs.d.ts" />
+/*!
 * knockout-winjs
 *
 * Copyright 2015 Jeroen Vos
@@ -181,20 +182,25 @@ var ConcreteCoding;
                 bindingList.dataSource.referenceId = Math.random().toString();
                 value.referenceId = bindingList.dataSource.referenceId;
                 value.subscribe(function (newValue) {
+                    var indexOffset = 0;
                     for (var i = 0, len = newValue.length; i < len; i++) {
                         var item = newValue[i];
                         switch (item.status) {
                             case "deleted":
-                                bindingList.splice(item.index, 1);
+                                bindingList.splice(item.index + indexOffset, 1);
+                                indexOffset--;
                                 break;
                             case "added":
                                 if (item.index === len) {
+                                    indexOffset++;
                                     bindingList.push(item.value);
                                 }
                                 else if (item.index === 0) {
+                                    indexOffset++;
                                     bindingList.unshift(item.value);
                                 }
                                 else {
+                                    indexOffset++;
                                     bindingList.push(item.value);
                                     bindingList.move(value().length - 1, item.index);
                                 }
@@ -388,3 +394,4 @@ var ConcreteCoding;
         ConcreteCoding.KnockoutToWinJS.addBindings(ConcreteCoding.KnockoutToWinJS.controls);
     });
 })();
+//# sourceMappingURL=knockout-winjs.js.map
